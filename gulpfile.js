@@ -11,13 +11,13 @@ gulp.task('server:start', () => {
 
 gulp.task('pre-test', () => {
     return gulp.src([
-        './data/**/*.js',
-        './app/**/*.js',
-        './config/**/*.js',
-        './db/**/*.js',
-        './models/**/*.js',
-        './server.js',
-    ])
+            './data/**/*.js',
+            './app/**/*.js',
+            './config/**/*.js',
+            './db/**/*.js',
+            './models/**/*.js',
+            './server.js',
+        ])
         .pipe(istanbul({
             includeUntested: true,
         }))
@@ -26,9 +26,9 @@ gulp.task('pre-test', () => {
 
 gulp.task('tests:unit', ['pre-test'], () => {
     return gulp.src([
-        './test/unit/**/*.js',
-        './test/integration/**/*.js',
-    ])
+            './test/unit/**/*.js',
+            './test/integration/**/*.js',
+        ])
         .pipe(mocha({
             reporter: 'nyan',
         }))
