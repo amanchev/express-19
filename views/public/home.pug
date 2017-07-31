@@ -67,13 +67,27 @@ html.no-js(lang='en')
 			// END Site Header
 			// END Site Header
 			// Intro
-			section.site-section.site-section-top.site-section-light.themed-background-dark
+			//section.site-section.site-section-top.site-section-light.themed-background-dark
 				.container
 					h1.text-center.animation-fadeInQuickInv
 						strong Start using myFitnessCOACH
 			// END Intro
-			a.btn.btn-success(href="/auth/sign-in") Sign In
-			a.btn.btn-success(href="/auth/sign-up") Sign Up
+			section.site-section.site-section-top.site-section-light.themed-background-dark-default
+				.container
+					.push.text-center
+						h1.animation-fadeInQuick2Inv
+							strong Find Your training inspiration.
+						h2.text-light-op.animation-fadeInQuickInv.push-bit
+							strong Start using myFitnessCOACH
+						a.btn.btn-lg.btn-success.push-right-left(href="/auth/sign-in") 
+							strong Sign In
+						a.btn.btn-lg.btn-info.push-right-left(href="/auth/sign-up") 
+							strong Sign Up
+					.site-promo-img.visibility-none(data-toggle='animation-appear', data-animation-class='animation-slideUpQuick', data-element-offset='0')
+						img(src='/static/front/img/placeholders/screenshots/promo_welcome.png', alt='')
+
+			//a.btn.btn-success.btn-lg(href="/auth/sign-in") Sign In
+			//a.btn.btn-success.btn-lg(href="/auth/sign-up") Sign Up
 		// jQuery, Bootstrap, jQuery plugins and Custom JS code
 		script(src='/static/front/js/vendor/jquery-2.2.4.min.js')
 		script(src='/static/front/js/vendor/bootstrap.min.js')

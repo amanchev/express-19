@@ -1,4 +1,4 @@
-const port = 3001;
+const port = 80;
 const connectionString = 'mongodb://localhost/items-db';
 const sessionSecret = 'Purple Unicorn';
 

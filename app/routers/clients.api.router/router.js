@@ -8,7 +8,6 @@ const attachTo = (app, data) => {
             if (!req.user) {
                 return res.send('You need authentication');
             }
-            console.log(req.user.clients);
             return res.send(req.user.clients);
         })
         .post('/', (req, res) => {

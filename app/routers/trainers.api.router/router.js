@@ -5,15 +5,24 @@ const attachTo = (app, data) => {
 
     apiRouter
         .get('/', (req, res) => {
+            if (req.query.sport) {
+                return data.trainers
+                    .filterBy({ 'sport': new RegExp(req.query.sport, 'i') })
+                    .then((trainers) => {
+                        res.send(trainers);
+                    });
+            }
+            if (req.query.tag) {
+                return data.trainers
+                    .filterBy({ 'tag': new RegExp(req.query.tag, 'i') })
+                    .then((trainers) => {
+                        res.send(trainers);
+                    });
+            }
+
             return data.trainers.getAll()
                 .then((trainers) => {
-                    return res.send(trainers);
-                });
-        })
-        .post('/:username', (req, res) => {
-            return data.clients.findByUsername(req.params.username)
-                .then((client) => {
-                    req.user.clients.push(client);
+                    res.send(trainers);
                 });
         });
 
