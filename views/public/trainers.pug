@@ -1,0 +1,105 @@
+doctype html
+//if IE 9
+	html.no-js.lt-ie10(lang='en')  
+// [if gt IE 9] <!
+html.no-js(lang='en')
+	// <![endif]
+	head
+		meta(charset='utf-8')
+		title MyFitCOACH
+		meta(name='description', content='AppUI Frontend is a Responsive Bootstrap Site Template created by pixelcave and added as a bonus in AppUI Admin Template package')
+		meta(name='author', content='pixelcave')
+		meta(name='robots', content='noindex, nofollow')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+		// Icons
+		// The following icons can be replaced with your own, they are used by desktop and mobile browsers
+		link(rel='shortcut icon', href='/static/img/favicon.png')
+		link(rel='apple-touch-icon', href='/static/img/icon57.png', sizes='57x57')
+		link(rel='apple-touch-icon', href='/static/img/icon72.png', sizes='72x72')
+		link(rel='apple-touch-icon', href='/static/img/icon76.png', sizes='76x76')
+		link(rel='apple-touch-icon', href='/static/img/icon114.png', sizes='114x114')
+		link(rel='apple-touch-icon', href='/static/img/icon120.png', sizes='120x120')
+		link(rel='apple-touch-icon', href='/static/img/icon144.png', sizes='144x144')
+		link(rel='apple-touch-icon', href='/static/img/icon152.png', sizes='152x152')
+		link(rel='apple-touch-icon', href='/static/img/icon180.png', sizes='180x180')
+		// END Icons
+		// Stylesheets
+		// Bootstrap is included in its original form, unaltered
+		link(rel='stylesheet', href='/static/front/css/bootstrap.min.css')
+		// Related styles of various icon packs and plugins
+		link(rel='stylesheet', href='/static/front/css/plugins.css')
+		// The main stylesheet of this template. All Bootstrap overwrites are defined in here
+		link(rel='stylesheet', href='/static/front/css/main.css')
+		// The themes stylesheet of this template (for using specific theme color in individual elements - must included last)
+		link(rel='stylesheet', href='/static/front/css/themes.css')
+		// END Stylesheets
+		// Modernizr (browser feature detection library)
+		script(src='/static/front/js/vendor/modernizr-3.3.1.min.js')
+	body
+		// Page Container
+		// In the PHP version you can set the following options from inc/config file
+		// 'boxed' class for a boxed layout
+		#page-container.boxed
+			// Site Header
+			header
+				.container
+					// Site Logo
+					a.site-logo(href='index.html')
+						i.fa.fa-cube
+						|  myFitness
+						strong COACH
+					// END Site Logo
+					// Site Navigation
+					nav
+						// Menu Toggle
+						// Toggles menu on small screens
+						a.btn.btn-default.site-menu-toggle.visible-xs.visible-sm(href='javascript:void(0)') Menu
+						// END Menu Toggle
+						// Main Menu
+						ul.site-nav
+							li
+								a(href='/home') Get started
+							li
+								a(href='/pricing') Pricing
+							li
+								a(href='/trainers/all') Trainers
+					// END Site Navigation
+			// END Site Header
+			// Intro
+			section.site-section.site-section-top.site-section-light.themed-background-dark
+				.container
+					h1.text-center.animation-fadeInQuickInv
+						strong The people that made it possible.
+		each trainer in context
+			section.site-content.site-section.overflow-hidden.border-bottom
+				.container
+					.row.row-items
+						.col-md-2.col-md-offset-2.text-center.visibility-none(data-toggle='animation-appear', data-animation-class='animation-fadeInRight', data-element-offset='-20')
+							- var picture = +trainer.picture
+							if(picture=="")
+								img.img-circle.img-thumbnail.img-thumbnail-avatar-2x(src='/static/img/placeholders/avatars/avatar7@2x.jpg', alt='')
+							
+							else
+								img.img-circle.img-thumbnail.img-thumbnail-avatar-2x(src='/static/img/'+trainer.picture, alt='avatar')
+						
+							
+						.col-md-6.visibility-none(data-toggle='animation-appear', data-animation-class='animation-fadeInLeft', data-element-offset='-20')
+							h4
+								span.text-muted.text-uppercase.pull-right PERSONAL CONDITIONAL
+									//each trainer.category
+										| cat
+								strong 
+									| #{trainer.firstName} #{trainer.lastName}
+							p
+								| #{trainer.about}
+		// Scroll to top link, initialized in js/app.js - scrollToTop()
+		a#to-top(href='#')
+			i.fa.fa-arrow-up
+		// jQuery, Bootstrap, jQuery plugins and Custom JS code
+		script(src='/static/front/js/vendor/jquery-2.2.4.min.js')
+		script(src='/static/front/js/vendor/bootstrap.min.js')
+		script(src='/static/front/js/plugins.js')
+		script(src='/static/front/js/app.js')
+		script.
+			$(()=>{ $('.item').first().addClass(' active'); });
+

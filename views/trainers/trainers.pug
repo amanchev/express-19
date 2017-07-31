@@ -1,0 +1,56 @@
+extends ../_shared/_master
+block content
+    #page-content
+        // Search Results Block
+        .block
+            // Search Results Content
+            .tab-content
+                // Projects Results
+                #search-tab-projects.tab-pane.active
+                    table.table.table-striped.table-borderless.table-vcenter
+                        thead
+                            tr
+                                th.text-center.hidden-xs(style='width: 140px;')
+                                th NAME
+                                th.text-center.hidden-xs(style='width: 20%;') SPORT
+                                th.text-center(style='min-width: 130px; width: 20%;') MOTTO
+                        tbody
+                            each trainer in context
+                                tr
+                                    td.text-center.hidden-xs
+                                        - var picture = +trainer.picture
+                                        if(picture=="")
+                                            img.img-circle.img-thumbnail.img-thumbnail-transparent.img-thumbnail-avatar-2x.push(src='/static/img/placeholders/avatars/avatar13@2x.jpg', alt='avatar')
+                                        
+                                        else
+                                            img.img-circle.img-thumbnail.img-thumbnail-transparent.img-thumbnail-avatar-2x.push(src='/static/img/'+trainer.picture, alt='avatar')
+                                    td
+                                        h3
+                                            a(href='/trainers/'+trainer.username)
+                                                strong 
+                                                    | #{trainer.firstName} #{trainer.lastName}
+                                        p
+                                            a.label.label-danger(href='javascript:void(0)') PERSONAL
+                                            a.label.label-warning(href='javascript:void(0)') CONDITONAL
+                                    td.text-center.hidden-xs
+                                        h3
+                                            | #{trainer.sport}
+                                    td.text-center
+                                        h3
+                                            | #{trainer.motto}
+                    //.text-center
+                        ul.pagination
+                            li.disabled
+                                a(href='javascript:void(0)') Prev
+                            li.active
+                                a(href='javascript:void(0)') 1
+                            li
+                                a(href='javascript:void(0)') 2
+                            li
+                                a(href='javascript:void(0)') 3
+                            li
+                                a(href='javascript:void(0)') Next
+                // END Projects Results
+            // END Search Results Content
+        // END Search Results Block
+    // END Page Content

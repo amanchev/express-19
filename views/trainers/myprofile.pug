@@ -1,0 +1,281 @@
+extends ../_shared/_master
+block content
+	// Page content
+	#page-content
+		// User Profile Row
+		.row
+			.col-md-5.col-lg-4
+				.widget
+					.widget-image.widget-image-sm
+						img(src='/static/img/placeholders/photos/photo1@2x.jpg', alt='image')
+						.widget-image-content.text-center
+							- var picture = +context.picture
+							if(picture=="")
+								img.img-circle.img-thumbnail.img-thumbnail-transparent.img-thumbnail-avatar-2x.push(src='/static/img/placeholders/avatars/avatar13@2x.jpg', alt='avatar')
+							
+							else
+								img.img-circle.img-thumbnail.img-thumbnail-transparent.img-thumbnail-avatar-2x.push(src='/static/img/'+context.picture, alt='avatar')
+							
+							h2.widget-heading.text-light
+								strong #{context.firstName} #{context.lastName}
+							h4.widget-heading.text-light-op
+								em 
+									=context.sport
+					.widget-content.widget-content-full.border-bottom
+						.row.text-center
+							.col-xs-6.push-inner-top-bottom.border-right
+								h3.widget-heading
+									i.gi.gi-heart.text-danger.push
+									br
+									small
+										strong 1.5k
+										|  Favorites
+							.col-xs-6.push-inner-top-bottom
+								h3.widget-heading
+									i.gi.gi-group.themed-color-social.push
+									br
+									small
+										strong 58.6k
+										|  Followers
+					.widget-content.border-bottom
+						h4 About
+						p
+							=context.about
+						
+					.widget-content
+						h4 Social
+						.btn-group
+							a.btn.btn-default(href='javascript:void(0)', data-toggle='tooltip', title='Facebook')
+								i.fa.fa-facebook.fa-fw
+							a.btn.btn-default(href='javascript:void(0)', data-toggle='tooltip', title='Twitter')
+								i.fa.fa-twitter.fa-fw
+							a.btn.btn-default(href='javascript:void(0)', data-toggle='tooltip', title='Google Plus')
+								i.fa.fa-google-plus.fa-fw
+							a.btn.btn-default(href='javascript:void(0)', data-toggle='tooltip', title='Pinterest')
+								i.fa.fa-pinterest.fa-fw
+							a.btn.btn-default(href='javascript:void(0)', data-toggle='tooltip', title='Dribbble')
+								i.fa.fa-dribbble.fa-fw
+			.col-md-7.col-lg-8
+				.block.full
+					// Block Tabs Title
+					.block-title
+						.block-options.pull-right
+							a.btn.btn-effect-ripple.btn-default(href='javascript:void(0)', data-toggle='tooltip', title='Settings')
+								i.fa.fa-cog
+						ul.nav.nav-tabs(data-toggle='tabs')
+							li.active
+								a(href='#profile-followers') My Clients	
+							li
+								a(href='#profile-gallery') Photos
+							li
+								a(href='#profile-activity') Activity
+					// END Block Tabs Title
+					// Tabs Content
+					.tab-content
+						// Followers
+						#profile-followers.tab-pane.active
+							.block-content-full
+								table.table.table-striped.table-borderless.table-vcenter.remove-margin-bottom
+									tbody
+										if(context.clients)
+											if(context.clients == '')
+												h4  You have no clients
+												
+											else
+												each client in context.clients
+													tr.animation-fadeInQuick2
+														td.text-center(style='width: 100px;')
+															img.img-circle.img-thumbnail.img-thumbnail-avatar(src='/static/img/placeholders/avatars/avatar1.jpg', alt='avatar')
+														td
+															h4
+																strong 
+																	=client.firstName
+															i.fa.fa-fw.fa-user.text-danger
+															|  Web Designer
+															br
+															i.fa.fa-fw.fa-map-marker.text-info
+															|  New York, USA
+														td.text-right(style='width: 20%;')
+															button.deleteClient.btn.btn-sm.btn-danger(data-toggle='tooltip', title='Delete' value=''+client.username)
+																| X
+															a.btn.btn-sm.btn-primary(href='javascript:void(0)', data-toggle='tooltip', title='Follow')
+																i.fa.fa-share
+										else
+											h4  You have no clients
+								a.btn.btn-success(href='/clients') Add client		
+								//.text-center.push-bit-top-bottom
+									a.btn.btn-sm.btn-primary(href='javascript:void(0)') Show More
+						// END Followers
+						// Activity
+						#profile-activity.tab-pane
+							.timeline.block-content-full
+								ul.timeline-list
+									li
+										.timeline-time just now
+										.timeline-icon.themed-background-danger.text-light-op
+											i.fa.fa-cutlery
+										.timeline-content
+											p.push-bit
+												strong Time to eat
+											p.push-bit Delicious fresh italian pizzas!
+											.row
+												.col-sm-6.col-md-4.block-section
+													a(href='/static/img/placeholders/photos/photo11.jpg', data-toggle='lightbox-image')
+														img(src='/static/img/placeholders/photos/photo11.jpg', alt='image')
+												.col-sm-6.col-md-4.block-section
+													a(href='/static/img/placeholders/photos/photo2.jpg', data-toggle='lightbox-image')
+														img(src='/static/img/placeholders/photos/photo2.jpg', alt='image')
+									li
+										.timeline-time 10 min ago
+										.timeline-icon.themed-background.text-light-op
+											i.fa.fa-twitter
+										.timeline-content
+											p.push-bit
+												strong + 4 New Followers
+											p.push-bit Congrats, you've got 4 new followers today!
+											a(href='javascript:void(0)')
+												img.img-circle.push-bit(src='/static/img/placeholders/avatars/avatar12.jpg', alt='Avatar')
+											a(href='javascript:void(0)')
+												img.img-circle.push-bit(src='/static/img/placeholders/avatars/avatar8.jpg', alt='Avatar')
+											a(href='javascript:void(0)')
+												img.img-circle.push-bit(src='/static/img/placeholders/avatars/avatar2.jpg', alt='Avatar')
+											a(href='javascript:void(0)')
+												img.img-circle.push-bit(src='/static/img/placeholders/avatars/avatar6.jpg', alt='Avatar')
+									li
+										.timeline-time 30 min ago
+										.timeline-icon.themed-background-info.text-light-op
+											i.fa.fa-facebook
+										.timeline-content
+											p.push-bit
+												strong + 500 Facebook Likes
+											|                                                             This is great, keep it up!
+									li
+										.timeline-time 1 hour ago
+										.timeline-icon.themed-background-amethyst.text-light-op
+											i.fa.fa-file-pdf-o
+										.timeline-content
+											p.push-bit
+												strong
+													| New file uploaded 
+													a(href='javascript:void(0)') AppDocs.pdf
+											|                                                             The new documenation for 1.2 update is live!
+									li
+										.timeline-time 2 days ago
+										.timeline-icon.themed-background-warning.text-light-op
+											i.fa.fa-coffee
+										.timeline-content
+											p.push-bit
+												strong Coffee Time
+											p.push-bit With some awesome fresh baked croissants!
+											.row
+												.col-sm-6.col-md-4.block-section
+													a(href='/static/img/placeholders/photos/photo14.jpg', data-toggle='lightbox-image')
+														img(src='/static/img/placeholders/photos/photo14.jpg', alt='image')
+									li
+										.timeline-time 5 days ago
+										.timeline-icon.themed-background-creme.text-light-op
+											i.gi.gi-cogwheel
+										.timeline-content
+											p.push-bit
+												strong App Update
+											|                                                             Updated to 
+											a(href='javascript:void(0)') version 1.2
+									li
+										.timeline-time 1 week ago
+										.timeline-icon.themed-background-success.text-light-op
+											i.fa.fa-smile-o
+										.timeline-content
+											p.push-bit
+												strong Thank you and Welcome!
+											p.push-bit
+												| It's great to have you on board! Feel free to have a look at our 
+												a(href='page_ready_faq.html') FAQ
+												|  if you have any further questions.
+						// END Activity
+						// Gallery
+						#profile-gallery.tab-pane
+							h3.sub-header
+								i.fa.fa-picture-o
+								strong 2014
+							.row.gallery(data-toggle='lightbox-gallery')
+								.col-lg-4
+									.gallery-image-container.animation-fadeInQuick2Inv
+										img(src='/static/img/placeholders/photos/photo5.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo5.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+								.col-lg-4
+									.gallery-image-container.animation-fadeInQuick2Inv
+										img(src='/static/img/placeholders/photos/photo6.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo6.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+								.col-lg-4
+									.gallery-image-container.animation-fadeInQuick2Inv
+										img(src='/static/img/placeholders/photos/photo7.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo7.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+								.col-lg-3
+									.gallery-image-container.animation-fadeInQuick2
+										img(src='/static/img/placeholders/photos/photo8.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo8.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+								.col-lg-3
+									.gallery-image-container.animation-fadeInQuick2
+										img(src='/static/img/placeholders/photos/photo9.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo9.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+								.col-lg-3
+									.gallery-image-container.animation-fadeInQuick2
+										img(src='/static/img/placeholders/photos/photo10.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo10.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+								.col-lg-3
+									.gallery-image-container.animation-fadeInQuick2
+										img(src='/static/img/placeholders/photos/photo11.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo11.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+							h3.sub-header
+								i.fa.fa-picture-o
+								strong 2013
+							.row.gallery(data-toggle='lightbox-gallery')
+								.col-lg-4
+									.gallery-image-container.animation-fadeInQuick2Inv
+										img(src='/static/img/placeholders/photos/photo12.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo12.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+								.col-lg-4
+									.gallery-image-container.animation-fadeInQuick2Inv
+										img(src='/static/img/placeholders/photos/photo13.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo13.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+								.col-lg-4
+									.gallery-image-container.animation-fadeInQuick2Inv
+										img(src='/static/img/placeholders/photos/photo14.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo14.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+								.col-lg-3
+									.gallery-image-container.animation-fadeInQuick2
+										img(src='/static/img/placeholders/photos/photo15.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo15.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+								.col-lg-3
+									.gallery-image-container.animation-fadeInQuick2
+										img(src='/static/img/placeholders/photos/photo16.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo16.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+								.col-lg-3
+									.gallery-image-container.animation-fadeInQuick2
+										img(src='/static/img/placeholders/photos/photo17.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo17.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+								.col-lg-3
+									.gallery-image-container.animation-fadeInQuick2
+										img(src='/static/img/placeholders/photos/photo18.jpg', alt='Image')
+										a.gallery-image-options(href='/static/img/placeholders/photos/photo18.jpg', title='Image Info')
+											i.fa.fa-search-plus.fa-3x.text-light
+							.text-center.push-bit-top-bottom
+								a.btn.btn-sm.btn-primary(href='javascript:void(0)') Show More
+						// END Gallery
+						
+					// END Tabs Content
+		// END User Profile Row
+	// END Page Content

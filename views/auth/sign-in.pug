@@ -1,0 +1,43 @@
+include ../_shared/_links
+.col-md-8.col-md-offset-2
+    // Horizontal Form Block
+    .block
+        // Horizontal Form Title
+        .block-title
+            h2 Sign in       
+        // END Horizontal Form Title
+        // Horizontal Form Content
+        form.form-horizontal.form-bordered(action='/auth/sign-in', method='post')
+            .form-group
+                label.col-md-3.control-label(for='username') Username
+                .col-md-9
+                    input#email.form-control(type='username', name='username')
+                    span.help-block Please enter your username
+            .form-group
+                label.col-md-3.control-label(for='password') Password
+                .col-md-9
+                    input#password.form-control(type='password', name='password')
+                    span.help-block Please enter your password
+            .form-group.form-actions
+                .col-md-9.col-md-offset-3
+                    button.btn.btn-effect-ripple.btn-primary(type='submit') Log in
+                    button.btn.btn-effect-ripple.btn-danger(type='reset') Reset
+                    h1
+                        != messages()
+            .form-group.form-actions
+                label.col-md-3.control-label(for='sign-up') No registration?            
+                .col-md-9
+                    a(href='/auth/sign-up').btn.btn-effect-ripple.btn-success
+                        | Sign up
+            // END Horizontal Form Content
+        // END Horizontal Form Block
+// jQuery, Bootstrap, jQuery plugins and Custom JS code
+script(src='/static/js/vendor/jquery-2.2.4.min.js')
+script(src='/static/js/vendor/bootstrap.min.js')
+script(src='/static/js/plugins.js')
+script(src='/static/js/app.js')
+// Load and execute javascript code used only in this page
+script(src='/static/js/pages/formsComponents.js')
+script.
+    $(function(){ FormsComponents.init(); });
+

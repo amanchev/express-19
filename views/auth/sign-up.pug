@@ -1,0 +1,168 @@
+include ../_shared/_links
+.col-md-8.col-md-offset-2
+    .block
+        .block-title
+            h2 Sign In
+        // END Validation Wizard Title
+        // Validation Wizard Content
+        form#validation-wizard.form-horizontal.form-bordered(action='/auth/sign-up', method='post')
+            // First Step
+            #validation-first.step
+                // Step Info
+                .form-group
+                    .col-xs-12
+                        ul.nav.nav-pills
+                            li.active.disabled
+                                a.text-muted(href='javascript:void(0)')
+                                    i.fa.fa-user
+                                    strong Account
+                            li.disabled
+                                a(href='javascript:void(0)')
+                                    i.fa.fa-info-circle
+                                    strong Info
+                // END Step Info
+                .form-group
+                    label.col-md-4.control-label(for='username')
+                        | Username 
+                        span.text-danger *
+                    .col-md-6
+                        .input-group
+                            input#username.form-control(type='text', name='username', placeholder='Choose a nice username..', required='')
+                            span.input-group-addon
+                                i.gi.gi-user
+                .form-group
+                    label.col-md-4.control-label(for='email')
+                        | Email 
+                        span.text-danger *
+                    .col-md-6
+                        .input-group
+                            input#email.form-control(type='text', name='email', placeholder='Enter your valid email..', required='')
+                            span.input-group-addon
+                                i.gi.gi-envelope
+                .form-group
+                    label.col-md-4.control-label(for='password')
+                        | Password 
+                        span.text-danger *
+                    .col-md-6
+                        .input-group
+                            input#password.form-control(type='password', name='password', placeholder='Choose a good one..', required='')
+                            span.input-group-addon
+                                i.gi.gi-asterisk
+                .form-group
+                    label.col-md-4.control-label(for='confirm-password')
+                        | Retype Password 
+                        span.text-danger *
+                    .col-md-6
+                        .input-group
+                            input#confirm-password.form-control(type='password', name='confirm-password', placeholder='..and confirm it to be safe!', required='')
+                            span.input-group-addon
+                                i.gi.gi-asterisk
+            // END First Step
+            // Second Step
+            #validation-second.step
+                // Step Info
+                .form-group
+                    .col-xs-12
+                        ul.nav.nav-pills
+                            li.disabled
+                                a.text-muted(href='javascript:void(0)')
+                                    del
+                                        i.fa.fa-user
+                                        strong Account
+                            li.active.disabled
+                                a(href='javascript:void(0)')
+                                    i.fa.fa-info-circle
+                                    strong Info
+                // END Step Info.form-group
+                .form-group
+                    label.col-md-4.control-label(for='picture') Upload picture
+                    .col-md-6
+                        input#picture(type='file', name='picture')
+
+                .form-group
+                    label.col-md-4.control-label(for='firstName')
+                        | First Name
+                        span.text-danger *
+                    .col-md-6
+                        .input-group
+                            input#firstname.form-control(type='text', name='firstName', placeholder='What is your first name..', required='')
+                            span.input-group-addon
+                                i.gi.gi-user
+                .form-group
+                    label.col-md-4.control-label(for='lastName')
+                        | Last Name
+                        span.text-danger *
+                    .col-md-6
+                        .input-group
+                            input#lastname.form-control(type='text', name='lastName', placeholder='What is your last name..', required='')
+                            span.input-group-addon
+                                i.gi.gi-user 
+                .form-group
+                    label.col-md-4.control-label(for='birthDate') 
+                        | Birth date
+                        span.text-danger *                        
+                    .col-md-6
+                        .input-group                    
+                            input#birthDate.form-control.input-datepicker(type='text', name='birthDate', data-date-format='dd.mm.yyyy', placeholder='dd.mm.yyyy'  required='')
+                .form-group
+                    label.col-md-4.control-label(for='sport')
+                        | Sport
+                        span.text-danger *
+                    .col-md-6
+                        .input-group
+                            input#sport.form-control(type='text', name='sport', placeholder='What do you train?', required='')
+                            span.input-group-addon
+                                i.gi.gi-dumbbell
+                .form-group
+                    label.col-md-4.control-label(for='injuries') Injuries/Surgery/Lack of mobility
+                    .col-md-8
+                        textarea#injuries.form-control(name='injuries', rows='5', placeholder='For best trainer-user experience, we need to know, if you have some injuries, surgery or lack of mobility..')
+                .form-group
+                    label.col-md-4.control-label(for='motto') Motto
+                    .col-md-8
+                        textarea#motto.form-control(name='motto', rows='5', placeholder='Share your motto with us..')
+                .form-group
+                    label.col-md-4.control-label(for='about') About you?
+                    .col-md-8
+                        textarea#about.form-control(name='about', rows='5', placeholder='Share something about you... Who are you? What are you doing? Where are you working?')
+                .form-group
+                    label.col-md-4.control-label(for='aboutUs') About Us?
+                    .col-md-8
+                        textarea#aboutUs.form-control(name='aboutUs', rows='5', placeholder='Say something about us... Why you chouse us?')
+                .form-group
+                    label.col-md-4.control-label
+                        | Are you a trainer
+                        span.text-danger *
+                    .col-md-6
+                        label.switch.switch-primary(for='isTrainer')
+                            input#isTrainer(type='checkbox', name='isTrainer', value='1')
+                            span(data-toggle='tooltip', title='I am a trainer!')
+                .form-group
+                    label.col-md-4.control-label
+                        a(href='#modal-terms', data-toggle='modal') Terms
+                        span.text-danger *
+                    .col-md-6
+                        label.switch.switch-primary(for='terms')
+                            input#terms(type='checkbox', name='terms', value='1')
+                            span(data-toggle='tooltip', title='I agree to the terms!')
+                
+            // END Second Step
+            // Form Buttons
+            .form-group.form-actions
+                .col-md-6.col-md-offset-4
+                    input#back3.btn.btn-sm.btn-warning(type='reset', value='Back')
+                    input#next3.btn.btn-sm.btn-success(type='submit', value='Next')
+                    a.btn.btn-sm.btn-primary.pull-right(href='/auth/sign-in') Sign In
+            // END Form Buttons
+        // END Validation Wizard Content
+    // END Validation Wizard Block
+
+// jQuery, Bootstrap, jQuery plugins and Custom JS code
+script(src='/static/js/vendor/jquery-2.2.4.min.js')
+script(src='/static/js/vendor/bootstrap.min.js')
+script(src='/static/js/plugins.js')
+script(src='/static/js/app.js')
+// Load and execute javascript code used only in this page
+script(src='/static/js/pages/formsWizard.js')
+script.
+    $(function(){ FormsWizard.init(); });

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+    meta(charset='utf-8')
+    title MyFitCOACH
+    meta(name='description', content='AppUI is a Web App Bootstrap Admin Template created by pixelcave and published on Themeforest')
+    meta(name='author', content='pixelcave')
+    meta(name='robots', content='noindex, nofollow')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    
+    
+include _links
+body
+    // Page Wrapper
+    // In the PHP version you can set the following options from inc/config file
+    //
+      Available classes:
+      'page-loading'      enables page preloader
+    #page-wrapper.page-loading
+      // Preloader
+      // Preloader functionality (initialized in js/app.js) - pageLoading()
+      // Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in #page-wrapper element (HTML version)
+      .preloader
+        .inner
+          // Animation spinner for all modern browsers
+          .preloader-spinner.themed-background.hidden-lt-ie10
+          // Text for IE9
+          h3.text-primary.visible-lt-ie10
+            strong Loading..
+      // END Preloader
+      // Page Container
+      // In the PHP version you can set the following options from inc/config file
+      //
+        Available #page-container classes:
+        'sidebar-light'                                 for a light main sidebar (You can add it along with any other class)
+        'sidebar-visible-lg-mini'                       main sidebar condensed - Mini Navigation (> 991px)
+        'sidebar-visible-lg-full'                       main sidebar full - Full Navigation (> 991px)
+        'sidebar-alt-visible-lg'                        alternative sidebar visible by default (> 991px) (You can add it along with any other class)
+        'header-fixed-top'                              has to be added only if the class 'navbar-fixed-top' was added on header.navbar
+        'header-fixed-bottom'                           has to be added only if the class 'navbar-fixed-bottom' was added on header.navbar
+        'fixed-width'                                   for a fixed width layout (can only be used with a static header/main sidebar layout)
+        'enable-cookies'                                enables cookies for remembering active color theme when changed from the sidebar links (You can add it along with any other class)
+      #page-container.header-fixed-top.sidebar-visible-lg-full
+        #sidebar
+          // Sidebar Brand
+          #sidebar-brand.themed-background
+            a.sidebar-title(href='/')
+              i.fa.fa-cube
+              span.sidebar-nav-mini-hide
+                | MyFitness
+                strong COACH
+          // END Sidebar Brand
+          // Wrapper for scrolling functionality
+          #sidebar-scroll
+            // Sidebar Content
+            .sidebar-content
+              // Sidebar Navigation
+              ul.sidebar-nav
+                li
+                  a.active(href='/')
+                    i.gi.gi-compass.sidebar-nav-icon
+                    span.sidebar-nav-mini-hide Dashboard
+                li.sidebar-separator
+                  i.fa.fa-ellipsis-h
+                li
+                  a(href='/trainers')
+                    i.fa.fa-rocket.sidebar-nav-icon
+                    span.sidebar-nav-mini-hide Trainers
+                if _masterContext.isTrainer
+                  li
+                    a(href='/clients')
+                      i.gi.gi-airplane.sidebar-nav-icon
+                      span.sidebar-nav-mini-hide Clients
+              // END Sidebar Navigation
+            // END Sidebar Content
+          // END Wrapper for scrolling functionality
+        // END Main Sidebar
+        // Main Container
+        #main-container
+          // Header
+          // In the PHP version you can set the following options from inc/config file
+          //
+            Available header.navbar classes:
+            'navbar-default'            for the default light header
+            'navbar-inverse'            for an alternative dark header
+            'navbar-fixed-top'          for a top fixed header (fixed main sidebar with scroll will be auto initialized, functionality can be found in js/app.js - handleSidebar())
+            'header-fixed-top'      has to be added on #page-container only if the class 'navbar-fixed-top' was added
+            'navbar-fixed-bottom'       for a bottom fixed header (fixed main sidebar with scroll will be auto initialized, functionality can be found in js/app.js - handleSidebar()))
+            'header-fixed-bottom'   has to be added on #page-container only if the class 'navbar-fixed-bottom' was added
+          header.navbar.navbar-inverse.navbar-fixed-top
+            // Left Header Navigation
+            ul.nav.navbar-nav-custom
+              // Main Sidebar Toggle Button
+              li
+                a(href='javascript:void(0)', onclick="App.sidebar('toggle-sidebar');this.blur();")
+                  i#sidebar-toggle-mini.fa.fa-ellipsis-v.fa-fw.animation-fadeInRight
+                  i#sidebar-toggle-full.fa.fa-bars.fa-fw.animation-fadeInRight
+              // END Main Sidebar Toggle Button
+            // END Left Header Navigation
+            // Right Header Navigation
+            ul.nav.navbar-nav-custom.pull-right
+              // User Dropdown
+              li.dropdown
+                a.dropdown-toggle(href='javascript:void(0)', data-toggle='dropdown')
+                  - var picture = +_masterContext.picture
+                  if(picture=="")
+                    img(src='/static/img//placeholders/avatars/avatar13@2x.jpg', alt='avatar')
+                  else
+                    img(src='/static/img/'+_masterContext.picture, alt='avatar')
+                  
+                  
+                ul.dropdown-menu.dropdown-menu-right
+                  li.dropdown-header
+                    strong Hello, #{_masterContext.firstName}   
+                  if(+_masterContext.isTrainer)                 
+                    li
+                      a(href='/trainers/'+_masterContext.username)
+                        i.fa.fa-pencil-square.fa-fw.pull-right
+                        |                                             My Profile
+                  else
+                    li
+                      a(href='/clients/'+_masterContext.username)
+                        i.fa.fa-pencil-square.fa-fw.pull-right
+                        |                                             My Profile
+                  li.divider
+                  li
+                  li
+                    a(href='javascript:void(0)', onclick="App.sidebar('toggle-sidebar-alt');")
+                      i.gi.gi-settings.fa-fw.pull-right
+                      |                                             Settings
+                  li
+                    form(action='/auth/sign-out', method='post')
+                      button.btn.btn-danger(type='submit') Log Out
+
+              
+          block content
+    include _scripts
